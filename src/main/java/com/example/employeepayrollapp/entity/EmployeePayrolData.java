@@ -1,73 +1,31 @@
 package com.example.employeepayrollapp.entity;
 
 import com.example.employeepayrollapp.dto.EmployeePayrolDTO;
+import lombok.Data;
 
+import java.time.LocalDate;
+import java.util.List;
 
+@Data
 public class EmployeePayrolData {
     private int id;
     private String fName;
-    private String lName;
-    private String company;
-    private String roll;
     private int salary;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getfName() {
-        return fName;
-    }
-
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public String getlName() {
-        return lName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getRoll() {
-        return roll;
-    }
-
-    public void setRoll(String roll) {
-        this.roll = roll;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
+    private String gender;
+    private LocalDate startDate;
+    private String note;
+    private  String profilePic;
+    private List<String> department;
     public EmployeePayrolData() {
     }
-
     public EmployeePayrolData(int id, EmployeePayrolDTO employeePayrolDTO) {
         this.id = id;
-        this.fName = employeePayrolDTO.getfName();
-        this.lName = employeePayrolDTO.getlName();
-        this.company = employeePayrolDTO.getCompany();
-        this.roll = employeePayrolDTO.getRoll();
+        this.fName=employeePayrolDTO.getFName();
         this.salary = employeePayrolDTO.getSalary();
+        this.gender=employeePayrolDTO.getGender();
+        this.startDate = employeePayrolDTO.getStartDate();
+        this.note = employeePayrolDTO.getNote();
+        this.profilePic=employeePayrolDTO.getProfilePic();
+        this.department=employeePayrolDTO.getDepartment();
     }
 }

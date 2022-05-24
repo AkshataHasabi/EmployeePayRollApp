@@ -31,11 +31,13 @@ public class EmployeePayrollService implements IEmployeeService{
 
     public EmployeePayrolData updateEmployeePayrollData(int id, EmployeePayrolDTO employeePayrolDTO) {
         EmployeePayrolData employeePayrolData=this.getEmployeePayrollDataById(id);
-        employeePayrolData.setfName(employeePayrolDTO.getfName());
-        employeePayrolData.setlName(employeePayrolDTO.getlName());
-        employeePayrolData.setCompany(employeePayrolDTO.getCompany());
-        employeePayrolData.setRoll(employeePayrolDTO.getRoll());
+        employeePayrolData.setFName(employeePayrolDTO.getFName());
         employeePayrolData.setSalary(employeePayrolDTO.getSalary());
+        employeePayrolData.setGender(employeePayrolDTO.getGender());
+        employeePayrolData.setStartDate(employeePayrolDTO.getStartDate());
+        employeePayrolData.setNote(employeePayrolDTO.getNote());
+        employeePayrolData.setProfilePic(employeePayrolDTO.getProfilePic());
+        employeePayrolData.setDepartment(employeePayrolDTO.getDepartment());
         employeePayrolDataList.set(id-1,employeePayrolData);
         return employeePayrolData;
     }
