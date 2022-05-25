@@ -13,8 +13,9 @@ import java.util.List;
 public class EmployeePayrolData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
     @Column(name = "emp_id")
+    private int id;
+    @Column(name = "name")
     private String fName;
     private int salary;
     private String gender;

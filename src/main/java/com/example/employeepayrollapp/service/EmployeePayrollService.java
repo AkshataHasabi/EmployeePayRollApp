@@ -16,7 +16,6 @@ public class EmployeePayrollService implements IEmployeeService{
     @Autowired
     private EmployeePayrollRepository employeePayrollRepository;
 
-    private List<EmployeePayrolData> employeePayrolDataList=new ArrayList<>();
     @Override
     public List<EmployeePayrolData> getEmployeePayrollData() {
         return employeePayrollRepository.findAll();
@@ -28,10 +27,14 @@ public class EmployeePayrollService implements IEmployeeService{
     }
 
     @Override
+    public List<EmployeePayrolData> getEmployeesByDepartment(String department){
+        return employeePayrollRepository.findEmployeesByDepartment(department);
+    }
+
+    @Override
     public EmployeePayrolData createEmployeePayrollData(EmployeePayrolDTO employeePayrolDTO) {
         EmployeePayrolData employeePayrolData=new EmployeePayrolData(employeePayrolDTO);
         log.debug("empData"+employeePayrolData.toString());
-        employeePayrolDataList.add(employeePayrolData);
         return employeePayrollRepository.save(employeePayrolData);
     }
 
