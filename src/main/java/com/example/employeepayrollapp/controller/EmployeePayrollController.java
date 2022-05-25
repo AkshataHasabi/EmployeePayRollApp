@@ -31,7 +31,7 @@ public class EmployeePayrollController {
         ResponseDTO responseDTO=new ResponseDTO("Get call for ID Success",employeePayrolData);
         return  new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
-    @PostMapping("/create")
+    @PostMapping(value = "/create")
     public ResponseEntity<ResponseDTO> addEmployeePayrollData(@Valid @RequestBody EmployeePayrolDTO employeePayrolDTO){
         EmployeePayrolData employeePayrolData=iEmployeeService.createEmployeePayrollData(employeePayrolDTO);
         ResponseDTO responseDTO=new ResponseDTO("created employee payroll succesfully",employeePayrolData);
