@@ -19,13 +19,12 @@ public class EmployeePayrollService implements IEmployeeService{
     private List<EmployeePayrolData> employeePayrolDataList=new ArrayList<>();
     @Override
     public List<EmployeePayrolData> getEmployeePayrollData() {
-        return employeePayrolDataList;
+        return employeePayrollRepository.findAll();
     }
 
     @Override
     public EmployeePayrolData getEmployeePayrollDataById(int id) {
-        return employeePayrolDataList.stream().filter(employeePayrolData -> employeePayrolData.getId() == id)
-                            .findFirst().orElseThrow(()-> new EmployeePayrollException("Exception Not Found"));
+        return employeePayrollRepository.findById(id).orElseThrow(()->new EmployeePayrollException("Employee with id"+id+"does not exist..!!"));
     }
 
     @Override
@@ -38,19 +37,13 @@ public class EmployeePayrollService implements IEmployeeService{
 
     public EmployeePayrolData updateEmployeePayrollData(int id, EmployeePayrolDTO employeePayrolDTO) {
         EmployeePayrolData employeePayrolData=this.getEmployeePayrollDataById(id);
-        employeePayrolData.setFName(employeePayrolDTO.getFName());
-        employeePayrolData.setSalary(employeePayrolDTO.getSalary());
-        employeePayrolData.setGender(employeePayrolDTO.getGender());
-        employeePayrolData.setStartDate(employeePayrolDTO.getStartDate());
-        employeePayrolData.setNote(employeePayrolDTO.getNote());
-        employeePayrolData.setProfilePic(employeePayrolDTO.getProfilePic());
-        employeePayrolData.setDepartment(employeePayrolDTO.getDepartment());
-        employeePayrolDataList.set(id-1,employeePayrolData);
-        return employeePayrolData;
+        employeePayrolData.updateEmployeePayrolData(employeePayrolDTO);
+        return employeePayrollRepository.save(employeePayrolData);
     }
 
     @Override
     public void deleteEmployeePayrollData(int id) {
-        employeePayrolDataList.remove(id-1);
+        EmployeePayrolData employeePayrolData=this.getEmployeePayrollDataById(id);
+        employeePayrollRepository.delete(employeePayrolData);
     }
 }
